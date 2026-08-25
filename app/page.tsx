@@ -53,13 +53,24 @@ export default function Home() {
         <p className="intro-body">We design and install intelligent solar, storage and hybrid energy systems—giving families and organisations cleaner, quieter and more dependable power.</p>
       </section>
 
-      <section className="feature feature-home">
+      <section className="feature residential-gallery" aria-label="Residential solar gallery">
+        <div className="feature-track">
+          <div className="feature-slide feature-home" id="residential-1" role="img" aria-label="Solar panels installed on a family home" />
+          <div className="feature-slide feature-rooftop" id="residential-2" role="img" aria-label="Aerial view of a rooftop solar installation" />
+          <div className="feature-slide feature-evening" id="residential-3" role="img" aria-label="Solar-powered home in the evening" />
+        </div>
         <div className="feature-copy">
           <p className="eyebrow light">Residential solar</p>
           <h2>Own your<br />daylight.</h2>
           <p>Turn your roof into a reliable source of power. Our tailored home systems reduce generator use, protect essential appliances and store energy for the night.</p>
           <a className="text-link light" href="#consultation">Power your home <Arrow /></a>
         </div>
+        <div className="gallery-nav" aria-label="Choose gallery image">
+          <a href="#residential-1" aria-label="View residential solar image 1">01</a>
+          <a href="#residential-2" aria-label="View residential solar image 2">02</a>
+          <a href="#residential-3" aria-label="View residential solar image 3">03</a>
+        </div>
+        <p className="swipe-hint">Swipe to explore <span aria-hidden="true">→</span></p>
       </section>
 
       <section className="solutions" id="solutions">
