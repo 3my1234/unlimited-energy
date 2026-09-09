@@ -127,7 +127,7 @@ export default function Home() {
         <p className="eyebrow">Start your energy journey</p>
         <h2>Let&apos;s build your<br />power system.</h2>
         <p>Tell us about your property and power needs. We&apos;ll guide you toward the right system.</p>
-        <a className="button button-dark" href="mailto:hello@unlimitedenergy.systems?subject=Solar%20assessment%20request">Request a consultation</a>
+        <a className="button button-dark" href="mailto:info@unlimitedenergysystems.com?subject=Solar%20assessment%20request">Request a consultation</a>
         <small>Company registration in progress with the Corporate Affairs Commission.</small>
       </section>
 

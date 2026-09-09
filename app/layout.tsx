@@ -13,8 +13,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://unlimitedenergysystems.com"),
   title: "Unlimited Energy Systems | Solar & Clean Energy",
   description: "Engineered solar, battery storage and hybrid power systems for Nigerian homes and businesses.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_NG",
+    url: "/",
+    siteName: "Unlimited Energy Systems",
+    title: "Unlimited Energy Systems | Solar & Clean Energy",
+    description: "Engineered solar, battery storage and hybrid power systems for Nigerian homes and businesses.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Unlimited Energy Systems | Solar & Clean Energy",
+    description: "Engineered solar, battery storage and hybrid power systems for Nigerian homes and businesses.",
+  },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
