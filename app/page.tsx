@@ -1,3 +1,5 @@
+import { getSiteMedia } from "@/lib/site-media";
+
 const services = [
   ["01", "Solar installations", "Site assessment, system design and precise installation for homes, offices and industrial facilities."],
   ["02", "Battery & backup", "High-capacity storage, intelligent power control and resilient backup for life beyond the grid."],
@@ -16,7 +18,15 @@ function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 
-export default function Home() {
+export const revalidate = 300;
+
+const background = (overlay: string, url: string) => ({
+  backgroundImage: `${overlay},url("${url}")`,
+});
+
+export default async function Home() {
+  const media = await getSiteMedia();
+
   return (
     <main>
       <header className="site-header">
@@ -33,7 +43,12 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-media" role="img" aria-label="Solar panels installed on a modern home" />
+        <div
+          className="hero-media"
+          style={{ backgroundImage: `url("${media.heroImage.url}")` }}
+          role="img"
+          aria-label={media.heroImage.alt}
+        />
         <div className="hero-shade" />
         <div className="hero-copy">
           <p className="eyebrow light">Clean power, engineered for you</p>
@@ -55,9 +70,16 @@ export default function Home() {
 
       <section className="feature residential-gallery" aria-label="Residential solar gallery">
         <div className="feature-track">
-          <div className="feature-slide feature-home" id="residential-1" role="img" aria-label="Solar panels installed on a family home" />
-          <div className="feature-slide feature-rooftop" id="residential-2" role="img" aria-label="Aerial view of a rooftop solar installation" />
-          <div className="feature-slide feature-evening" id="residential-3" role="img" aria-label="Solar-powered home in the evening" />
+          {media.residentialImages.map((item, index) => (
+            <div
+              className="feature-slide"
+              id={`residential-${index + 1}`}
+              key={item.url}
+              style={background("linear-gradient(90deg,rgba(0,0,0,.62),rgba(0,0,0,.05))", item.url)}
+              role="img"
+              aria-label={item.alt}
+            />
+          ))}
         </div>
         <div className="feature-copy">
           <p className="eyebrow light">Residential solar</p>
@@ -66,9 +88,15 @@ export default function Home() {
           <a className="text-link light" href="#consultation">Power your home <Arrow /></a>
         </div>
         <div className="gallery-nav" aria-label="Choose gallery image">
-          <a href="#residential-1" aria-label="View residential solar image 1">01</a>
-          <a href="#residential-2" aria-label="View residential solar image 2">02</a>
-          <a href="#residential-3" aria-label="View residential solar image 3">03</a>
+          {media.residentialImages.map((item, index) => (
+            <a
+              href={`#residential-${index + 1}`}
+              aria-label={`View residential solar image ${index + 1}: ${item.alt}`}
+              key={item.url}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </a>
+          ))}
         </div>
         <p className="swipe-hint">Swipe to explore <span aria-hidden="true">→</span></p>
       </section>
@@ -90,17 +118,46 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="film" aria-label="Project film placeholder">
+      <section
+        className="film"
+        style={!media.projectVideo.url
+          ? background("linear-gradient(90deg,rgba(0,0,0,.56),rgba(0,0,0,.1))", media.projectVideo.poster)
+          : undefined}
+        aria-label="Unlimited Energy project film"
+      >
+        {media.projectVideo.url ? (
+          <video
+            className="film-media"
+            controls
+            playsInline
+            preload="metadata"
+            poster={media.projectVideo.poster}
+          >
+            <source src={media.projectVideo.url} type="video/mp4" />
+            <track
+              kind="captions"
+              src={media.projectVideo.captions ?? undefined}
+              srcLang="en"
+              label="English"
+              default
+            />
+          </video>
+        ) : null}
+        <div className="film-shade" />
         <div className="film-copy">
           <p className="eyebrow light">Built for real life</p>
           <h2>From sunlight<br />to switch-on.</h2>
         </div>
-        <button className="play" type="button" aria-label="Play project film"><span>▶</span></button>
-        <p className="media-note">Full-width project video space</p>
+        {!media.projectVideo.url ? <p className="media-note">Project video coming soon</p> : null}
       </section>
 
       <section className="process" id="process">
-        <div className="process-image" role="img" aria-label="Technician installing rooftop solar panels" />
+        <div
+          className="process-image"
+          style={{ backgroundImage: `url("${media.processImage.url}")` }}
+          role="img"
+          aria-label={media.processImage.alt}
+        />
         <div className="process-copy">
           <p className="eyebrow">A clear path to clean power</p>
           <h2>Designed around your life.</h2>

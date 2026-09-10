@@ -1,0 +1,25 @@
+{
+  "heroImage": {
+    "url": "https://assets.example.com/website/hero/solar-home.webp",
+    "alt": "Completed residential solar installation"
+  },
+  "residentialImages": [
+    {
+      "url": "https://assets.example.com/website/projects/project-01.webp",
+      "alt": "Solar panels installed on a residential roof"
+    },
+    {
+      "url": "https://assets.example.com/website/projects/project-02.webp",
+      "alt": "Battery and inverter installation"
+    }
+  ],
+  "projectVideo": {
+    "url": "https://assets.example.com/website/video/installation-tour.mp4",
+    "poster": "https://assets.example.com/website/video/installation-tour-poster.webp",
+    "captions": "https://assets.example.com/website/video/installation-tour-en.vtt"
+  },
+  "processImage": {
+    "url": "https://assets.example.com/website/process/engineer-at-work.webp",
+    "alt": "Unlimited Energy engineer completing an installation"
+  }
+}

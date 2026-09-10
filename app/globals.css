@@ -15,7 +15,7 @@ nav a:hover, footer a:hover { opacity:.6; }
 .header-cta { padding:12px 20px; border:1px solid rgba(255,255,255,.65); border-radius:2px; font-size:12px; font-weight:700; }
 .hero { min-height:100svh; position:relative; display:flex; justify-content:center; overflow:hidden; color:white; }
 .hero-media, .feature-slide, .film, .process-image { background-size:cover; background-position:center; }
-.hero-media { position:absolute; inset:0; background-image:url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2400&q=88"); transform:scale(1.01); }
+.hero-media { position:absolute; inset:0; transform:scale(1.01); }
 .hero-shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.06) 43%,rgba(0,0,0,.48)); }
 .hero-copy { position:relative; z-index:1; padding-top:14vh; text-align:center; }
 .eyebrow { margin:0 0 22px; font-size:11px; line-height:1.2; letter-spacing:.18em; text-transform:uppercase; font-weight:700; }
@@ -37,9 +37,6 @@ h1 { margin:0; font-size:clamp(48px,6.3vw,96px); line-height:.96; letter-spacing
 .feature-track { position:absolute; inset:0; z-index:0; display:flex; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none; overscroll-behavior-x:contain; }
 .feature-track::-webkit-scrollbar { display:none; }
 .feature-slide { min-width:100%; height:100%; scroll-snap-align:start; scroll-snap-stop:always; }
-.feature-home { background-image:linear-gradient(90deg,rgba(0,0,0,.62),rgba(0,0,0,.05)),url("https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=2400&q=88"); }
-.feature-rooftop { background-image:linear-gradient(90deg,rgba(0,0,0,.62),rgba(0,0,0,.08)),url("https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=2400&q=88"); }
-.feature-evening { background-image:linear-gradient(90deg,rgba(0,0,0,.68),rgba(0,0,0,.12)),url("https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?auto=format&fit=crop&w=2400&q=88"); }
 .feature-copy { position:relative; z-index:2; max-width:540px; pointer-events:none; }
 .feature-copy a { pointer-events:auto; }
 .feature h2,.film h2,.company h2 { font-size:clamp(46px,6.4vw,90px); line-height:.95; letter-spacing:-.055em; font-weight:500; margin-bottom:25px; }
@@ -58,14 +55,13 @@ h1 { margin:0; font-size:clamp(48px,6.3vw,96px); line-height:.96; letter-spacing
 .service h3 { margin:0; font-size:27px; letter-spacing:-.035em; font-weight:500; }
 .service p { margin:0; max-width:470px; color:#666a64; font-size:14px; line-height:1.55; }
 .service>a { width:38px; height:38px; display:grid; place-items:center; border:1px solid #aaa; border-radius:50%; }
-.film { height:92svh; min-height:650px; position:relative; padding:7vw; display:flex; align-items:flex-end; color:white; background-image:linear-gradient(90deg,rgba(0,0,0,.56),rgba(0,0,0,.1)),url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2400&q=88"); }
+.film { height:92svh; min-height:650px; position:relative; padding:7vw; display:flex; align-items:flex-end; overflow:hidden; color:white; }
+.film-media { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.film-shade { position:absolute; inset:0; background:linear-gradient(90deg,rgba(0,0,0,.56),rgba(0,0,0,.1)); pointer-events:none; }
 .film-copy { position:relative; z-index:1; }
 .film h2 { margin-bottom:0; }
-.play { position:absolute; inset:0; margin:auto; width:84px; height:84px; border:1px solid rgba(255,255,255,.8); border-radius:50%; background:rgba(0,0,0,.18); color:white; cursor:pointer; backdrop-filter:blur(5px); }
-.play span { margin-left:4px; }
 .media-note { position:absolute; right:3vw; bottom:3vw; color:rgba(255,255,255,.7); font-size:10px; text-transform:uppercase; letter-spacing:.16em; }
 .process { display:grid; grid-template-columns:1fr 1fr; min-height:850px; }
-.process-image { background-image:url("https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1400&q=85"); }
 .process-copy { padding:9vw 7vw; background:white; }
 .process-copy>h2 { font-size:clamp(42px,4.8vw,72px); }
 .steps { margin-top:80px; }

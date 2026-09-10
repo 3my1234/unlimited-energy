@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+ref
+work
+dist
+.vinext
+.wrangler
+.npm-cache*
+*.png
+.env*
