@@ -35,9 +35,23 @@ manifest stored in S3 or served through CloudFront. Use
 about every five minutes, so replacing the referenced media and updating the
 manifest does not require a new deployment.
 
-Keep website assets under a separate `website/` prefix. The site only needs
-public read URLs; never provide AWS access keys to the browser. Perform uploads
-through the AWS console or a separately authenticated presigned-upload tool.
+Keep website assets under a separate `website/` prefix. The authenticated
+`/admin` dashboard uploads with short-lived presigned URLs, keeping AWS
+credentials on the server. Add every variable from `.env.example` to Coolify.
+`SITE_MEDIA_PUBLIC_BASE_URL` must be the HTTPS bucket or CloudFront base URL
+without a trailing slash.
+
+Generate `ADMIN_SESSION_SECRET` with:
+
+```powershell
+node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+```
+
+Give the website IAM user only `s3:GetObject` and `s3:PutObject` for
+`arn:aws:s3:::YOUR_BUCKET/website/*`. Configure S3 CORS to allow `PUT` from
+`https://unlimitedenergysystems.com` and
+`https://www.unlimitedenergysystems.com`, with `Content-Type` allowed as a
+request header. Removing an item in the dashboard does not delete its S3 object.
 
 ## Contact email
 

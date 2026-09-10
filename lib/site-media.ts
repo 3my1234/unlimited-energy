@@ -7,7 +7,7 @@ export type SiteMedia = {
   processImage: SiteImage;
 };
 
-const defaults: SiteMedia = {
+export const defaultSiteMedia: SiteMedia = {
   heroImage: {
     url: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2400&q=88",
     alt: "Solar panels installed on a modern home",
@@ -37,7 +37,7 @@ const defaults: SiteMedia = {
   },
 };
 
-function publicUrl(value: unknown): string | null {
+export function publicUrl(value: unknown): string | null {
   if (typeof value !== "string") return null;
   try {
     const parsed = new URL(value);
@@ -60,31 +60,35 @@ function image(value: unknown, fallback: SiteImage): SiteImage {
 
 export async function getSiteMedia(): Promise<SiteMedia> {
   const manifestUrl = publicUrl(process.env.SITE_MEDIA_MANIFEST_URL);
-  if (!manifestUrl) return defaults;
+  if (!manifestUrl) return defaultSiteMedia;
 
   try {
     const response = await fetch(manifestUrl, { next: { revalidate: 300 } });
-    if (!response.ok) return defaults;
-    const manifest = await response.json() as Record<string, unknown>;
-    const residential = Array.isArray(manifest.residentialImages)
-      ? manifest.residentialImages.slice(0, 8).map((item, index) =>
-          image(item, defaults.residentialImages[index % defaults.residentialImages.length]))
-      : defaults.residentialImages;
-    const video = manifest.projectVideo && typeof manifest.projectVideo === "object"
-      ? manifest.projectVideo as Record<string, unknown>
-      : {};
-
-    return {
-      heroImage: image(manifest.heroImage, defaults.heroImage),
-      residentialImages: residential.length ? residential : defaults.residentialImages,
-      projectVideo: {
-        url: publicUrl(video.url),
-        poster: publicUrl(video.poster) ?? defaults.projectVideo.poster,
-        captions: publicUrl(video.captions),
-      },
-      processImage: image(manifest.processImage, defaults.processImage),
-    };
+    if (!response.ok) return defaultSiteMedia;
+    return normalizeSiteMedia(await response.json());
   } catch {
-    return defaults;
+    return defaultSiteMedia;
   }
+}
+
+export function normalizeSiteMedia(value: unknown): SiteMedia {
+  const manifest = value && typeof value === "object" ? value as Record<string, unknown> : {};
+  const residential = Array.isArray(manifest.residentialImages)
+    ? manifest.residentialImages.slice(0, 8).map((item, index) =>
+        image(item, defaultSiteMedia.residentialImages[index % defaultSiteMedia.residentialImages.length]))
+    : defaultSiteMedia.residentialImages;
+  const video = manifest.projectVideo && typeof manifest.projectVideo === "object"
+    ? manifest.projectVideo as Record<string, unknown>
+    : {};
+
+  return {
+    heroImage: image(manifest.heroImage, defaultSiteMedia.heroImage),
+    residentialImages: residential.length ? residential : defaultSiteMedia.residentialImages,
+    projectVideo: {
+      url: publicUrl(video.url),
+      poster: publicUrl(video.poster) ?? defaultSiteMedia.projectVideo.poster,
+      captions: publicUrl(video.captions),
+    },
+    processImage: image(manifest.processImage, defaultSiteMedia.processImage),
+  };
 }
