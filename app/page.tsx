@@ -1,4 +1,5 @@
 import { getSiteMedia } from "@/lib/site-media";
+import Image from "next/image";
 
 const services = [
   ["01", "Solar installations", "Site assessment, system design and precise installation for homes, offices and industrial facilities."],
@@ -31,7 +32,7 @@ export default async function Home() {
     <main>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Unlimited Energy home">
-          <span className="brand-mark">U</span>
+          <Image className="brand-logo" src="/unlimited-energy-logo.png" alt="" width={64} height={64} priority />
           <span>UNLIMITED <b>ENERGY</b></span>
         </a>
         <nav aria-label="Main navigation">
@@ -189,7 +190,7 @@ export default async function Home() {
       </section>
 
       <footer>
-        <a className="brand footer-brand" href="#top"><span className="brand-mark">U</span><span>UNLIMITED <b>ENERGY</b></span></a>
+        <a className="brand footer-brand" href="#top"><Image className="brand-logo footer-logo" src="/unlimited-energy-logo.png" alt="" width={80} height={80} /><span>UNLIMITED <b>ENERGY</b></span></a>
         <p>Clean power. Built without limits.</p>
         <div><a href="#solutions">Solutions</a><a href="#company">Company</a><a href="#consultation">Contact</a></div>
         <p className="copyright">© 2026 Unlimited Energy Systems Limited</p>
