@@ -31,8 +31,9 @@ export const metadata: Metadata = {
     description: "Engineered solar, battery storage and hybrid power systems for Nigerian homes and businesses.",
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: { url: "/unlimited-energy-logo.png", type: "image/png" },
+    shortcut: "/unlimited-energy-logo.png",
+    apple: "/unlimited-energy-logo.png",
   },
 };
 
