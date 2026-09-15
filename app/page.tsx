@@ -40,6 +40,7 @@ export default async function Home() {
           <a href="#process">How it works</a>
           <a href="#company">Company</a>
         </nav>
+        <span className="header-rc" title="Corporate Affairs Commission registration number">RC 9855596</span>
         <a className="header-cta" href="#consultation">Get a Quote</a>
       </header>
 
@@ -178,7 +179,10 @@ export default async function Home() {
           <p className="eyebrow light">More than panels</p>
           <h2>A complete clean-energy company.</h2>
         </div>
-        <p>Our capabilities span renewable generation, technical engineering, smart-grid infrastructure, storage, energy auditing, equipment distribution and commercial energy partnerships.</p>
+        <div className="company-details">
+          <p>Our capabilities span renewable generation, technical engineering, smart-grid infrastructure, storage, energy auditing, equipment distribution and commercial energy partnerships.</p>
+          <p className="registration-badge"><span aria-hidden="true">✓</span> Incorporated in Nigeria by the Corporate Affairs Commission · RC 9855596</p>
+        </div>
       </section>
 
       <section className="consultation" id="consultation">
@@ -186,14 +190,14 @@ export default async function Home() {
         <h2>Let&apos;s build your<br />power system.</h2>
         <p>Tell us about your property and power needs. We&apos;ll guide you toward the right system.</p>
         <a className="button button-dark" href="mailto:info@unlimitedenergysystems.com?subject=Solar%20assessment%20request">Request a consultation</a>
-        <small>Company registration in progress with the Corporate Affairs Commission.</small>
+        <small>Unlimited Energy Systems Limited · CAC registered · RC 9855596</small>
       </section>
 
       <footer>
         <a className="brand footer-brand" href="#top"><Image className="brand-logo footer-logo" src="/unlimited-energy-logo.png" alt="" width={80} height={80} /><span>UNLIMITED <b>ENERGY</b></span></a>
         <p>Clean power. Built without limits.</p>
         <div><a href="#solutions">Solutions</a><a href="#company">Company</a><a href="#consultation">Contact</a></div>
-        <p className="copyright">© 2026 Unlimited Energy Systems Limited</p>
+        <p className="copyright">© 2026 Unlimited Energy Systems Limited · RC 9855596 · Incorporated in Nigeria</p>
       </footer>
     </main>
   );
